@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+const INITIAL_MESSAGE_NUMBER = 1;
+
 const messages = [
   'Learn React ⚛️',
   'Apply for jobs 💼',
@@ -12,7 +14,7 @@ const btnStyle = {
 };
 
 export const App = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(INITIAL_MESSAGE_NUMBER);
 
   const changeStep = (order) => {
     order === 'increment' && setStep((prev) => prev < 3 ? (prev + 1) : prev);
