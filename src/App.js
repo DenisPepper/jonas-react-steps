@@ -28,7 +28,7 @@ export const App = () => {
   const handleNextClick = () => changeStep('increment');
 
   return (
-    <div>
+    <>
       <button className='close' onClick={() => setIsOpen((prev) => !prev)}>
         &times;
       </button>
@@ -64,6 +64,6 @@ export const App = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
