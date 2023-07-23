@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const messages = [
   'Learn React ⚛️',
   'Apply for jobs 💼',
@@ -10,7 +12,16 @@ const btnStyle = {
 };
 
 export const App = () => {
-  const step = 1;
+  const [step, setStep] = useState(1);
+
+  const changeStep = (order) => {
+    order === 'increment' && setStep((prev) => prev < 3 ? (prev + 1) : prev);
+    order === 'decrement' && setStep((prev) => prev > 1 ? (prev - 1) : prev);
+  };
+
+  const handlePreviusClick = () => changeStep('decrement');
+
+  const handleNextClick = () => changeStep('increment');
 
   return (
     <div className='steps'>
@@ -25,10 +36,10 @@ export const App = () => {
       </p>
 
       <div className='buttons'>
-        <button type='button' style={btnStyle}>
+        <button type='button' style={btnStyle} onClick={handlePreviusClick}>
           prev
         </button>
-        <button type='button' style={btnStyle}>
+        <button type='button' style={btnStyle} onClick={handleNextClick}>
           next
         </button>
       </div>
