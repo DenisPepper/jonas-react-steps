@@ -63,6 +63,12 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+
+  transition: opacity 300ms;
+}
+
+.buttons button:disabled {
+  opacity: 0.3 !important;
 }
 
 .buttons button span {
