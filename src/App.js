@@ -14,13 +14,24 @@ const btnStyle = {
   color: 'white',
 };
 
+const getMessageDescription = (counter, date) => {
+  date.setDate(date.getDate() + counter);
+  let intro = 'Today is';
+  counter > 0 && (intro = `${Math.abs(counter)} days from today is`);
+  counter < 0 && (intro = `${Math.abs(counter)} days ago was`);
+  return `${intro} ${date.toDateString()}`;
+};
+
 export const App = () => {
-  return(
-    <Steps />
+  return (
+    <>
+      <Steps />
+      <DateCounter />
+    </>
   );
 };
 
-export const Steps = () => {
+const Steps = () => {
   const [step, setStep] = useState(INITIAL_MESSAGE_NUMBER_STATE);
   const [isOpen, setIsOpen] = useState(INITIAL_OPEN_STATE);
 
@@ -70,6 +81,52 @@ export const Steps = () => {
           </div>
         </div>
       )}
+    </div>
+  );
+};
+
+const DateCounter = () => {
+  const [step, setStep] = useState(1);
+  const [counter, setCounter] = useState(0);
+
+  return (
+    <div className='date-counter'>
+      <div>
+        <button
+          type='button'
+          style={btnStyle}
+          onClick={() => setStep((prev) => (prev > 1 ? prev - 1 : prev))}
+          disabled={step === 1}
+        >
+          &#8722;
+        </button>
+        <span>Step: {step}</span>
+        <button
+          type='button'
+          style={btnStyle}
+          onClick={() => setStep((prev) => prev + 1)}
+        >
+          &#43;
+        </button>
+      </div>
+      <div>
+        <button
+          type='button'
+          style={btnStyle}
+          onClick={() => setCounter((prev) => prev - step)}
+        >
+          &#8722;
+        </button>
+        <span>Counter: {counter}</span>
+        <button
+          type='button'
+          style={btnStyle}
+          onClick={() => setCounter((prev) => prev + step)}
+        >
+          &#43;
+        </button>
+      </div>
+      <div className='message'>{getMessageDescription(counter, new Date())}</div>
     </div>
   );
 };
