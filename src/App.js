@@ -10,7 +10,7 @@ const messages = [
 ];
 
 const btnStyle = {
-  backgroundColor: 'gold',
+  backgroundColor: 'green',
   color: 'white',
 };
 
@@ -62,26 +62,33 @@ const Steps = () => {
           </p>
 
           <div className='buttons'>
-            <button
-              type='button'
+            <Button
               style={btnStyle}
               onClick={handlePreviusClick}
               disabled={step <= 1}
             >
-              prev
-            </button>
-            <button
-              type='button'
+              👈 prev
+            </Button>
+            <Button
               style={btnStyle}
               onClick={handleNextClick}
               disabled={step >= 3}
             >
-              next
-            </button>
+              next 👉
+            </Button>
           </div>
         </div>
       )}
     </div>
+  );
+};
+
+const Button = (props) => {
+  const { children, onClick, disabled, style } = props;
+  return (
+    <button type='button' style={style} onClick={onClick} disabled={disabled}>
+      {children}
+    </button>
   );
 };
 
@@ -126,7 +133,9 @@ const DateCounter = () => {
           &#43;
         </button>
       </div>
-      <div className='message'>{getMessageDescription(counter, new Date())}</div>
+      <div className='message'>
+        {getMessageDescription(counter, new Date())}
+      </div>
     </div>
   );
 };
